@@ -11,9 +11,9 @@ User Function ABRE_SZ1()
     PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
     AADD(aCampos,"C5_FILIAL")
-    AADD(aCampos,"C5_FILIAL")
+    AADD(aCampos,"C5_NUM")
 
-    SX3->(dbSetOrder(2))
+    SX3->(dbSetOrder(2))//
     
     For nx:=1 To Len(aCampos)
         SX3->(dbSeek(aCampos[nx]))
@@ -22,7 +22,7 @@ User Function ABRE_SZ1()
 
     aTitulos:= {}
     SX3->(dbGoTop())
-    dbEval(aCampos,{|X| SX3->(dbSeek(x)),AAdd(aTitulos,AllTrim(SX3->X3_TITULO))})
+    aEval(aCampos,{|X| SX3->(dbSeek(x)),AAdd(aTitulos,AllTrim(SX3->X3_TITULO))})
 
     RESET ENVIRONMENT//Reseta o environment
 Return
