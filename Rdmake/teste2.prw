@@ -1,7 +1,7 @@
 #include "totvs.ch"
 #include "msmgadd.ch"
 #include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
-#include "TbiCode.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
+//#include "TbiCode.ch"
 
 User Function ABRESZ1()
 	// Local nItem := 100
