@@ -19,8 +19,8 @@ User Function teste4()
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
 	dbSelectArea("SZ1")//seleciona a tabela
-	//dbSetOrder(1)//indice que vai buscar, removo se for usar nickname
-	dbOrderNickName("Z1CLIENT")
+	dbSetOrder(1)//indice que vai buscar, removo se for usar nickname
+	//dbOrderNickName("Z1CLIENT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado, dbSeek procura a xfilial com o indice ou nao
 		MsgAlert("Achou")
 	else
