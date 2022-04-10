@@ -3,7 +3,11 @@
 #include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
 
 /*/{Protheus.doc} teste4
-	Comentário da function
+Manutenção de dados em SB1-Descrição Generica do Produto
+
+@autor      Helder Alves Couto
+@version    11.3.10.201812061821
+@since      09/04/2022
 /*/
 
 User Function teste4()
