@@ -15,7 +15,7 @@ User Function teste5()
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
 	dbSelectArea("SB1")//seleciona a tabela
-	dbSetOrder(1)//indice que vai buscar, removo se for usar nickname
+	dbSetOrder(1)//indice que vai buscar, remover se for usar nickname
 
 	if !SoftLock("SB1")//Trava todos os registro da tabela, para não ter alterações por outras chamadas no sistema
 		MsgAlert("Achou")
