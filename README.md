@@ -1,3 +1,0 @@
-# advpl
-
-Codando em ADVPL
