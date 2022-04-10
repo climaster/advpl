@@ -20,20 +20,20 @@ User Function teste4()
 
 	dbSelectArea("SB1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar, removo se for usar nickname
-	//dbOrderNickName("Z1CLIENT")
+	//dbOrderNickName("B1CLIENT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado, dbSeek procura a xfilial com o indice ou nao
 		MsgAlert("Achou")
 	else
 		//Incluir registro na tabela
 		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
-		Z1_FILIAL := xFilial()
-		Z1_CLIENT := "000001"
-		Z1_LOJA := "01"
-		Z1_PRODUT := "000001          "
-		Z1_UM := "PC"
-		Z1_UMCLI := "CX"
-		Z1_TIPO := "M"
-		Z1_FATOR := 10
+		B1_FILIAL := xFilial()
+		B1_CLIENT := "000001"
+		B1_LOJA := "01"
+		B1_PRODUT := "000001          "
+		B1_UM := "PC"
+		B1_UMCLI := "CX"
+		B1_TIPO := "M"
+		B1_FATOR := 10
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
@@ -43,25 +43,25 @@ User Function teste4()
 		MsgAlert("Achou")
 
 		RecLock("SB1", .F.)//recriando, mantem travada a tabela
-		Z1_FATOR := 20
+		B1_FATOR := 20
 		MsUnlock() //destrava a tabela
 	else
 		//Incluir registro na tabela
 		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
-		Z1_FILIAL := xFilial()
-		Z1_CLIENT := "000001"
-		Z1_LOJA := "01"
-		Z1_PRODUT := "000001          "
-		Z1_UM := "PC"
-		Z1_UMCLI := "CX"
-		Z1_TIPO := "M"
-		Z1_FATOR := 10
+		B1_FILIAL := xFilial()
+		B1_CLIENT := "000001"
+		B1_LOJA := "01"
+		B1_PRODUT := "000001          "
+		B1_UM := "PC"
+		B1_UMCLI := "CX"
+		B1_TIPO := "M"
+		B1_FATOR := 10
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
 	dbSelectArea("SB1")//seleciona a tabela
-	//dbSetOrder(1)//indice que vai buscar, colocou o nickname, não precisa do dbSetOrder()
-	dbOrderNickName("Z1PRODUT")
+	dbSetOrder(1)//indice que vai buscar, colocou o nickname, não precisa do dbSetOrder()
+	//dbOrderNickName("B1PRODUT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
 		RecLock("SB1", .F.)//recriando, mantem travada a tabela
 		dbDelete()
@@ -72,7 +72,7 @@ User Function teste4()
 
 	dbSelectArea("SB1")//seleciona a tabela
 	//dbSetOrder(1)//indice que vai buscar
-	dbOrderNickName("Z1PRODUT")
+	dbOrderNickName("B1PRODUT")
 	dbGoTop() //vai pro inicio do arquivo, ou seja para o primeiro registro da tabela, posso usar dbGoTo(Numero_do_registro_para_alterar)
 	//dbGoBotton() //vai para o ultimo registro, muda no while !Eof() End Of File, para !Bof() Begin Of File.
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
@@ -82,7 +82,7 @@ User Function teste4()
 		while !Eof()
 
 			RecLock("SB1", .F.)//recriando, mantem travada a tabela
-			Z1_FATOR := 20
+			B1_FATOR := 20
 			MsUnlock() //destrava a tabela
 
 			dbSkip() //Pula pro proximo registro, para atualizar os dados, dbSkip(-1) ele atualize e fique no mesmo registro, dbSkip() está amarrado a ultima tabela, para alterar ver nos prints
@@ -90,21 +90,21 @@ User Function teste4()
 	else
 		//Incluir registro na tabela
 		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
-		Z1_FILIAL := xFilial()
-		Z1_CLIENT := "000001"
-		Z1_LOJA := "01"
-		Z1_PRODUT := "000001          "
-		Z1_UM := "PC"
-		Z1_UMCLI := "CX"
-		Z1_TIPO := "M"
-		Z1_FATOR := 10
+		B1_FILIAL := xFilial()
+		B1_CLIENT := "000001"
+		B1_LOJA := "01"
+		B1_PRODUT := "000001          "
+		B1_UM := "PC"
+		B1_UMCLI := "CX"
+		B1_TIPO := "M"
+		B1_FATOR := 10
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
 	dbSelectArea("SB1")//seleciona a tabela, para fechar dbCloseArea()
 	dbGoTop() //dbGoTop(1), Numero do produto que eu quero, posso ver em RECNO() em inspeção, não usar na produção
 	RecLock("SB1", .F.)//recriando, mantem travada a tabela
-	Z1_FATOR := 1
+	B1_FATOR := 1
 	MsUnlock() //destrava a tabela
 
 	//dbRLock()
