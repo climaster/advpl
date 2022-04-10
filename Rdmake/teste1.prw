@@ -1,10 +1,14 @@
 #include "TOTVS.ch"
 
-/*Funçao de teste
-	Comentario de funcao
-*/
+/*/{Protheus.doc} teste1
+Manutenção de dados em SB1-Descrição Generica do Produto
 
-User function teste()
+@autor      Helder Alves
+@version    11.3.10.201812061821
+@since      09/04/2022
+/*/
+
+User function teste1()
 	Local cData1 := DTOS(Date())
 	Local dData2 := STOD("19830518")
 	Local nNumero := 20

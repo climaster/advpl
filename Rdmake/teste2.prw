@@ -3,7 +3,15 @@
 #include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
 //#include "TbiCode.ch"
 
-User Function ABRESZ1()
+/*/{Protheus.doc} teste2
+Manutenção de dados em SB1-Descrição Generica do Produto
+
+@autor      Helder Alves
+@version    11.3.10.201812061821
+@since      09/04/2022
+/*/
+
+User Function teste2()
 	// Local nItem := 100
     Local cTab := "12" //tabela de estados
     Local nCnt := 0
