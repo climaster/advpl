@@ -18,14 +18,14 @@ User Function teste4()
 	RpcSetType(3)
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
-	dbSelectArea("SZ1")//seleciona a tabela
+	dbSelectArea("SB1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar, removo se for usar nickname
 	//dbOrderNickName("Z1CLIENT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado, dbSeek procura a xfilial com o indice ou nao
 		MsgAlert("Achou")
 	else
 		//Incluir registro na tabela
-		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
 		Z1_FILIAL := xFilial()
 		Z1_CLIENT := "000001"
 		Z1_LOJA := "01"
@@ -37,17 +37,17 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SZ1")//seleciona a tabela
+	dbSelectArea("SB1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
 		MsgAlert("Achou")
 
-		RecLock("SZ1", .F.)//recriando, mantem travada a tabela
+		RecLock("SB1", .F.)//recriando, mantem travada a tabela
 		Z1_FATOR := 20
 		MsUnlock() //destrava a tabela
 	else
 		//Incluir registro na tabela
-		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
 		Z1_FILIAL := xFilial()
 		Z1_CLIENT := "000001"
 		Z1_LOJA := "01"
@@ -59,18 +59,18 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SZ1")//seleciona a tabela
+	dbSelectArea("SB1")//seleciona a tabela
 	//dbSetOrder(1)//indice que vai buscar, colocou o nickname, não precisa do dbSetOrder()
 	dbOrderNickName("Z1PRODUT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
-		RecLock("SZ1", .F.)//recriando, mantem travada a tabela
+		RecLock("SB1", .F.)//recriando, mantem travada a tabela
 		dbDelete()
 		MsUnlock() //destrava a tabela
 	else
 		MsgAlert("Sem registro para excluir")
 	endif
 
-	dbSelectArea("SZ1")//seleciona a tabela
+	dbSelectArea("SB1")//seleciona a tabela
 	//dbSetOrder(1)//indice que vai buscar
 	dbOrderNickName("Z1PRODUT")
 	dbGoTop() //vai pro inicio do arquivo, ou seja para o primeiro registro da tabela, posso usar dbGoTo(Numero_do_registro_para_alterar)
@@ -81,7 +81,7 @@ User Function teste4()
 		//Vai atualizar todos os dados do arquivo, enquanto nao for o final do arquivo, para Botom, usar while !Bof()
 		while !Eof()
 
-			RecLock("SZ1", .F.)//recriando, mantem travada a tabela
+			RecLock("SB1", .F.)//recriando, mantem travada a tabela
 			Z1_FATOR := 20
 			MsUnlock() //destrava a tabela
 
@@ -89,7 +89,7 @@ User Function teste4()
 		end
 	else
 		//Incluir registro na tabela
-		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
 		Z1_FILIAL := xFilial()
 		Z1_CLIENT := "000001"
 		Z1_LOJA := "01"
@@ -101,9 +101,9 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SZ1")//seleciona a tabela, para fechar dbCloseArea()
+	dbSelectArea("SB1")//seleciona a tabela, para fechar dbCloseArea()
 	dbGoTop() //dbGoTop(1), Numero do produto que eu quero, posso ver em RECNO() em inspeção, não usar na produção
-	RecLock("SZ1", .F.)//recriando, mantem travada a tabela
+	RecLock("SB1", .F.)//recriando, mantem travada a tabela
 	Z1_FATOR := 1
 	MsUnlock() //destrava a tabela
 
@@ -120,7 +120,7 @@ User Function teste4()
 
 	//Aplica filtro na tela, por exemplo para um vendedor não ver produtos do outro vendedor, pode ser via programação ou via configurador, pode ser filtrado no relarorio tbm
 	if !empty(_cFiltro)
-		SZ1->(dbSetFilter({|| &(_cFiltro)}, _cFiltro))//
+		SB1->(dbSetFilter({|| &(_cFiltro)}, _cFiltro))//
 	endif
 
 	//SoftLock() em teste5.prw
