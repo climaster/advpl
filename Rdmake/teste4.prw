@@ -73,12 +73,12 @@ User Function teste4()
 	dbSelectArea("SZ1")//seleciona a tabela
 	//dbSetOrder(1)//indice que vai buscar
 	dbOrderNickName("Z1PRODUT")
-	dbGoTop() //vai pro inicio do arquivo, ou seja para o primeiro registro da tabela
-	//dbGoBotton() //vai para o ultimo registro
+	dbGoTop() //vai pro inicio do arquivo, ou seja para o primeiro registro da tabela, posso usar dbGoTo(Numero_do_registro_para_alterar)
+	//dbGoBotton() //vai para o ultimo registro, muda no while !Eof() End Of File, para !Bof() Begin Of File.
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
 		MsgAlert("Achou")
 
-		//Vai atualizar todos os dados do arquivo, enquanto nao for o final do arquivo
+		//Vai atualizar todos os dados do arquivo, enquanto nao for o final do arquivo, para Botom, usar while !Bof()
 		while !Eof()
 
 			RecLock("SZ1", .F.)//recriando, mantem travada a tabela
@@ -100,6 +100,20 @@ User Function teste4()
 		Z1_FATOR := 10
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
+
+	dbSelectArea("SZ1")//seleciona a tabela
+	dbGoTop() //dbGoTop(1), Numero do produto que eu quero, posso ver em RECNO() em inspeção, não usar na produção
+	RecLock("SZ1", .F.)//recriando, mantem travada a tabela
+	Z1_FATOR := 1
+	MsUnlock() //destrava a tabela
+
+	//dbRLock()
+	/*
+	if SF2->(dbRLock())
+	...
+	MsUnLockAll() //desbloqueia todas as tabelas bloqueadas
+	
+	*/
 
 	RESET ENVIRONMENT//Reseta o environment
 Return
