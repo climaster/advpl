@@ -85,7 +85,7 @@ User Function teste4()
 			Z1_FATOR := 20
 			MsUnlock() //destrava a tabela
 
-			dbSkip() //Pula pro proximo registro, para atualizar os dados, dbSkip(-1) ele atualize e fique no mesmo registro
+			dbSkip() //Pula pro proximo registro, para atualizar os dados, dbSkip(-1) ele atualize e fique no mesmo registro, dbSkip() está amarrado a ultima tabela, para alterar ver nos prints
 		end
 	else
 		//Incluir registro na tabela
