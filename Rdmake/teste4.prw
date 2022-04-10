@@ -118,10 +118,12 @@ User Function teste4()
 	dbCommit()//Ao final da transação precisava fechar e dar o commit
 	dbCommitAll()// Ao final de todas as transações precisava dar o CommitAll()
 
-	//Aplica filtro na tela, por exemplo para um vendedor não ver produtos do outro vendedor, pode ser via programação ou via configurador
+	//Aplica filtro na tela, por exemplo para um vendedor não ver produtos do outro vendedor, pode ser via programação ou via configurador, pode ser filtrado no relarorio tbm
 	if !empty(_cFiltro)
 		SZ1->(dbSetFilter({|| &(_cFiltro)}, _cFiltro))//
 	endif
+
+	//SoftLock() em teste5.prw
 	
 	RESET ENVIRONMENT//Reseta o environment
 Return
