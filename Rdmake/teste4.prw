@@ -3,7 +3,7 @@
 #include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
 
 /*/{Protheus.doc} teste4
-Manutenção de dados em SB1-Descrição Generica do Produto
+Manutenção de dados em SZ1-Descrição Generica do Produto
 
 @autor      Helder Alves Couto
 @version    11.3.10.201812061821
@@ -18,14 +18,14 @@ User Function teste4()
 	RpcSetType(3)
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
-	dbSelectArea("SB1")//seleciona a tabela
+	dbSelectArea("SZ1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar, remover se for usar nickname
 	//dbOrderNickName("B1CLIENT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado, dbSeek procura a xfilial com o indice ou nao
 		MsgAlert("Achou")
 	else
 		//Incluir registro na tabela
-		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
 		B1_FILIAL := xFilial()
 		B1_CLIENT := "000001"
 		B1_LOJA := "01"
@@ -37,17 +37,17 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SB1")//seleciona a tabela
+	dbSelectArea("SZ1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
 		MsgAlert("Achou")
 
-		RecLock("SB1", .F.)//recriando, mantem travada a tabela
+		RecLock("SZ1", .F.)//recriando, mantem travada a tabela
 		B1_FATOR := 20
 		MsUnlock() //destrava a tabela
 	else
 		//Incluir registro na tabela
-		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
 		B1_FILIAL := xFilial()
 		B1_CLIENT := "000001"
 		B1_LOJA := "01"
@@ -59,18 +59,18 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SB1")//seleciona a tabela
+	dbSelectArea("SZ1")//seleciona a tabela
 	dbSetOrder(1)//indice que vai buscar, colocou o nickname, não precisa do dbSetOrder()
 	//dbOrderNickName("B1PRODUT")
 	if dbSeek(xFilial()+cCliente+cLoja)//vai retornar a filial com o indice criado
-		RecLock("SB1", .F.)//recriando, mantem travada a tabela
+		RecLock("SZ1", .F.)//recriando, mantem travada a tabela
 		dbDelete()
 		MsUnlock() //destrava a tabela
 	else
 		MsgAlert("Sem registro para excluir")
 	endif
 
-	dbSelectArea("SB1")//seleciona a tabela
+	dbSelectArea("SZ1")//seleciona a tabela
 	//dbSetOrder(1)//indice que vai buscar
 	dbOrderNickName("B1PRODUT")
 	dbGoTop() //vai pro inicio do arquivo, ou seja para o primeiro registro da tabela, posso usar dbGoTo(Numero_do_registro_para_alterar)
@@ -81,7 +81,7 @@ User Function teste4()
 		//Vai atualizar todos os dados do arquivo, enquanto nao for o final do arquivo, para Botom, usar while !Bof()
 		while !Eof()
 
-			RecLock("SB1", .F.)//recriando, mantem travada a tabela
+			RecLock("SZ1", .F.)//recriando, mantem travada a tabela
 			B1_FATOR := 20
 			MsUnlock() //destrava a tabela
 
@@ -89,7 +89,7 @@ User Function teste4()
 		end
 	else
 		//Incluir registro na tabela
-		RecLock("SB1", .T.)//incluindo ou recriando, mantem travada a tabela
+		RecLock("SZ1", .T.)//incluindo ou recriando, mantem travada a tabela
 		B1_FILIAL := xFilial()
 		B1_CLIENT := "000001"
 		B1_LOJA := "01"
@@ -101,9 +101,9 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SB1")//seleciona a tabela, para fechar dbCloseArea()
+	dbSelectArea("SZ1")//seleciona a tabela, para fechar dbCloseArea()
 	dbGoTop() //dbGoTop(1), Numero do produto que eu quero, posso ver em RECNO() em inspeção, não usar na produção
-	RecLock("SB1", .F.)//recriando, mantem travada a tabela
+	RecLock("SZ1", .F.)//recriando, mantem travada a tabela
 	B1_FATOR := 1
 	MsUnlock() //destrava a tabela
 
@@ -120,7 +120,7 @@ User Function teste4()
 
 	//Aplica filtro na tela, por exemplo para um vendedor não ver produtos do outro vendedor, pode ser via programação ou via configurador, pode ser filtrado no relarorio tbm
 	if !empty(_cFiltro)
-		SB1->(dbSetFilter({|| &(_cFiltro)}, _cFiltro))//
+		SZ1->(dbSetFilter({|| &(_cFiltro)}, _cFiltro))//
 	endif
 
 	//SoftLock() em teste5.prw

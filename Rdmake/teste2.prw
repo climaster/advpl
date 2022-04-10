@@ -4,7 +4,7 @@
 //#include "TbiCode.ch"
 
 /*/{Protheus.doc} teste2
-Manutenção de dados em SB1-Descrição Generica do Produto
+Manutenção de dados em SZ1-Descrição Generica do Produto
 
 @autor      Helder Alves Couto
 @version    11.3.10.201812061821
