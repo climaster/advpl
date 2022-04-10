@@ -101,7 +101,7 @@ User Function teste4()
 		MsUnlock() //destrava a tabela, (MsUnlock, Unlock, dbUnlock)
 	endif
 
-	dbSelectArea("SZ1")//seleciona a tabela
+	dbSelectArea("SZ1")//seleciona a tabela, para fechar dbCloseArea()
 	dbGoTop() //dbGoTop(1), Numero do produto que eu quero, posso ver em RECNO() em inspeção, não usar na produção
 	RecLock("SZ1", .F.)//recriando, mantem travada a tabela
 	Z1_FATOR := 1
