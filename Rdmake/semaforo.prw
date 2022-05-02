@@ -16,48 +16,29 @@
 #include "msmgadd.ch"
 #include "TbiConn.ch"
 //------------------------------------------------------------------------------------------
-/*/{Protheus.doc} ControlNum
+/*/{Protheus.doc} semaforo
 Manutenção de dados em SB1-Descricao Generica do Produto.
 @author    paulo.bindo
 @version   11.3.10.201812061821
 @since     21/06/2019
 /*/
 
-User Function ControlNum()
-	Local xx := 0
-
+User Function semaforo()
+	
 	RpcSetType(3)
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
 	dbSelectArea("SA1")
 	dbSetOrder(1)
 
-	For xx := 1 To 10
-		cNumero := GETSXENUM("SA1","A1_COD")
+    //Semaforo
+    // Nome do que crie + Controle por empresa +se por filial (Falso e true cria um registro de trava para o TESTE criado), travar para que usuários não abra uma empresa
+    If LockByName("TESTE",.F.,.T.)
+        MsgAlert("Já Usado", "LockByName")
+    EndIf
 
-		If cNumero $ "000099"
-			ROLLBACKSXE()
-		Else
-			RecLock("SA1", .T.)
-
-			A1_FILIAL := xFilial()
-			A1_COD := cNumero
-			A1_LOJA := "01"
-			A1_NOME := "Teste de Numeracao "+CValToChar(xx)
-			A1_PESSOA := "F"
-			A1_END := "Rua teste"
-			A1_NREDUZ := "Teste"+CValToChar(xx)
-			A1_BAIRRO := "Teste"
-			A1_TIPO := "F"
-			A1_EST := "SP"
-			A1_COD_MUN := "00105"
-			A1_MUN := "ADAMANTINA "
-			A1_NATUREZ := "1.00001 "
-			MsUnlock()
-
-			ConfirmSx8()
-		End
-	Next
+    // Nome do que crie + Controle por empresa +se por filial
+    UnLockByName("TESTE",.T.,.T.)
 
 	RESET ENVIRONMENT
 Return
