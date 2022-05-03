@@ -8,13 +8,14 @@
 // 02/05/2022 | helder couto      | Gerado no VSCode.
 // -----------+-------------------+---------------------------------------------------------
 
+#include "totvs.ch"
+#include "TbiConn.ch"
 //#include "protheus.ch"    Substituido por totvs.ch
 //#include "vkey.ch"        Substituido por totvs.ch
 //#include "Rwmake.ch"      >>>desnecessario<<<
-#include "totvs.ch"
-#include "JPEG.ch"
-#include "msmgadd.ch"
-#include "TbiConn.ch"
+//#include "JPEG.ch"
+//#include "msmgadd.ch"
+
 //------------------------------------------------------------------------------------------
 /*/{Protheus.doc} param
 Manutenção de dados em Parametros.
@@ -24,19 +25,23 @@ Manutenção de dados em Parametros.
 /*/
 
 User Function param()
-	Local cTitle := "Parametros aula"
+	//Local cTitle := "Parametros aula"
 	Local cMVPar := "MV_ULMES"
 	Local dParam := ""
+	Local dt := ""
 
 	RpcSetType(3)
 	PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "FAT"
 
 	GetMV(cMVPar)
 
-	dParam := GetMV(cMVPar) + 90
+	dParam := GetMV(cMVPar) - 180
+
 	PutMV(cMVPar,dParam)
 
-	MsgAlert(GetMV(cMVPar), cTitle)
+	dt := Dtos(GetMV(cMVPar))
+	
+    MsgAlert(dt)
 
 	RESET ENVIRONMENT
 Return

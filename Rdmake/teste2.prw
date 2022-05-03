@@ -1,6 +1,6 @@
 #include "totvs.ch"
 #include "msmgadd.ch"
-#include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as talebas e variaveis
+#include "TbiConn.ch" //usar uma função PREPARE.... simula abrir as tabelas e variaveis
 //#include "TbiCode.ch"
 
 /*/{Protheus.doc} teste2
